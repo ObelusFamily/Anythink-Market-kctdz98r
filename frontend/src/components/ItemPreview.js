@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import agent from "../agent";
+import verifiedSellerImage from "../public/verified_seller.svg";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
 
@@ -29,6 +30,14 @@ const ItemPreview = (props) => {
     }
   };
 
+  const verifiedSellerIcon = item.seller.isVerified ? (
+    <img src={verifiedSellerImage} alt="Verified Seller" className="verified-seller-icon" />
+  ) : null;
+
+  const verifiedSellerText = item.seller.isVerified ? (
+    <span className="verified-seller-text">TOP SELLER</span>
+  ) : null;
+
   return (
     <div
       className="card bg-dark border-light p-3"
@@ -53,7 +62,7 @@ const ItemPreview = (props) => {
               alt={item.seller.username}
               className="user-pic rounded-circle pr-1"
             />
-            {item.seller.isVerified &&(
+            {/* {item.seller.isVerified &&(
               <>
                <img
                   src="/verified_seller.svg"
@@ -63,7 +72,8 @@ const ItemPreview = (props) => {
                 />
                 <span className="ml-2">TOP SELLER</span>
               </>
-            )}
+            )} */}
+            {verifiedSellerIcon}
           </Link>
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
